@@ -11,26 +11,20 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 export class AppComponent implements OnInit {
   title = 'ng-reactive-client';
   tweets = ['a'];
-  tweet: any = 'first';
+  tweet: any = 'event not yet received';
   eventSource : EventSource;
   headers: HttpHeaders = new HttpHeaders();
   endPoint  = 'http://localhost:8080/tweetstream'; 
-
-  /* constructor (private observableEventSource : ObservableEventSource) {
-
-  } */
+ 
 
   ngOnInit() {
 
     const eventSource = new EventSourcePolyfill( this.endPoint, {headers: this.headers});
     //const eventSource = new EventSource( this.endPoint); // this doesn't work to refresh the UI with data
-       eventSource.onmessage = (event => {
-          //this.zone.run(() => {
-            //console.log('eventSource.onmessage: ', event);
-           // this.tweets = event.data;
-            this.tweets.push(event.data) 
+       eventSource.onmessage = (event => { 
+            
             this.tweet =event.data;  
-            //debugger
+             
             console.log('tweet data:' + this.tweet)
           //});
       });
