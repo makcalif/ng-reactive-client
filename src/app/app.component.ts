@@ -14,8 +14,9 @@ export class AppComponent implements OnInit {
   tweet: any = 'event not yet received';
   eventSource : EventSource;
   headers: HttpHeaders = new HttpHeaders();
-  endPoint  = 'http://localhost:8080/tweetstream'; 
- 
+  //endPoint  = 'http://localhost:8080/kafkastream3'; 
+  // endPoint  = 'http://localhost:8080/streamCars'; 
+  endPoint  = 'http://localhost:8080/infiniteCars'; 
 
   ngOnInit() {
 
