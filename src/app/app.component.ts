@@ -10,42 +10,28 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 })
 export class AppComponent implements OnInit {
   title = 'ng-reactive-client';
-  tweets = ['a'];
-  tweet: any = 'event not yet received';
+  events = ['a'];
+  event: any = 'event not yet received';
+  eventCount : number = 0;
   eventSource : EventSource;
   headers: HttpHeaders = new HttpHeaders();
   //endPoint  = 'http://localhost:8080/kafkastream3'; 
-  // endPoint  = 'http://localhost:8080/streamCars'; 
-  endPoint  = 'http://localhost:8080/infiniteCars'; 
+  //endPoint  = 'http://localhost:8080/streamCars'; 
+  //endPoint  = 'http://localhost:8080/infiniteCars'; 
+  endPoint  = 'http://localhost:8080/events'; 
 
   ngOnInit() {
 
     const eventSource = new EventSourcePolyfill( this.endPoint, {headers: this.headers});
     //const eventSource = new EventSource( this.endPoint); // this doesn't work to refresh the UI with data
-       eventSource.onmessage = (event => { 
+       eventSource.onmessage = (e => { 
             
-            this.tweet =event.data;  
+            this.event =e.data;  
              
-            console.log('tweet data:' + this.tweet)
+            console.log('event data:' + this.event)
+            this.eventCount ++;
           //});
       });
-
-   /*  this.eventSource = new EventSource('http://localhost:8080/tweetstream') ;
-    this.eventSource.onmessage = (event) => {
-      console.log('event revevied :' + event);
-    } */
-
-
-   /*  const observableEventSource = require('observable-event-source')
-
-    const o = observableEventSource({
-      url: 'https://skimdb.npmjs.com/registry/_changes?since=742000&feed=eventsource',
-      json: true
-    })
-
-    console.log('recently changed npm packages...')
-    o.map(function (update) {
-      return update.id
-    }).subscribe(console.log) */
+ 
   }
 }
