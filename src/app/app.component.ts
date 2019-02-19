@@ -15,9 +15,8 @@ export class AppComponent implements OnInit {
   eventCount : number = 0;
   eventSource : EventSource;
   headers: HttpHeaders = new HttpHeaders();
-  //endPoint  = 'http://localhost:8080/kafkastream3'; 
-  //endPoint  = 'http://localhost:8080/streamCars'; 
-  //endPoint  = 'http://localhost:8080/infiniteCars'; 
+
+  
   endPoint  = 'http://localhost:8080/events'; 
 
   ngOnInit() {
